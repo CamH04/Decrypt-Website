@@ -1,0 +1,125 @@
+@page "/StringToHexCOMPONENT"
+
+<h3>STRING TO HEX</h3>
+
+<div class="Top-Box-COMPONENT">
+    <input type="text" class="UserInput" @bind="UInput">
+</div>
+<div class="Bot-Box-COMPONENT">
+    <input type="text" class="Output" @bind="Display">
+</div>
+
+
+
+@code{
+    // https://www.geeksforgeeks.org/convert-a-string-to-hexadecimal-ascii-values/
+    string userInput = "";
+    string output = "";
+    string OriginInput = "";
+
+    public string UInput
+    {
+        get => userInput;
+        set
+        {
+            OriginInput  = userInput;
+            userInput = ASCIItoHEX(value);
+            output = userInput;
+            userInput = OriginInput;
+        }
+    }
+
+    public string Display{
+        get => output;
+        set
+        {
+            output = userInput;
+        }
+    }
+
+    // Function to convert
+    // decimal to hexadecimal
+    static string decToHexa(int n)
+    {   
+    // char array to store
+    // hexadecimal number
+    char []hexaDeciNum =
+            new char[100];
+    
+    // counter for hexadecimal
+    // number array
+    int i = 0;
+    
+    while(n != 0)
+    {   
+        // temporary variable
+        // to store remainder
+        int temp  = 0;
+    
+        // Storing remainder
+        // in temp variable.
+        temp = n % 16;
+    
+        // Check if temp < 10
+        if(temp < 10)
+        {
+        hexaDeciNum[i] =
+            (char)(temp + 48);
+        i++;
+        }
+        else
+        {
+        hexaDeciNum[i] =
+            (char)(temp + 87);
+        i++;
+        }
+    
+        n = n / 16;
+    }
+    
+    string ans = "";
+    
+    // Printing hexadecimal number
+    // array in reverse order
+    for(int j = i - 1;
+            j >= 0; j--)
+    {
+        ans += hexaDeciNum[j];
+    }
+    
+    return ans;
+    }  
+    
+    // Function to convert ASCII to HEX
+    public static string ASCIItoHEX(string userInput)
+    {
+    // Initialize final String
+    string hex = "";
+    
+    // Make a loop to iterate through
+    // every character of ascii string
+    for (int i = 0;
+            i < userInput.Length; i++)
+    {
+        // Take a char from
+        // position i of string
+        char ch = userInput[i];
+    
+        // Cast char to integer and
+        // find its ascii value
+        int tmp = (int)ch;
+    
+        // Change this ascii value
+        // integer to hexadecimal value
+        string part = decToHexa(tmp);
+    
+        // Add this hexadecimal value
+        // to final string.
+        hex += part;
+    }
+    
+    // Return the final
+    // string hex
+    return hex;
+    }
+}

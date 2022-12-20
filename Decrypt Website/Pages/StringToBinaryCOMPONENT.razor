@@ -1,0 +1,53 @@
+@page "/StringToBinaryCOMPONENT"
+
+
+<h3>STRING TO BINARY</h3>
+
+<div class="Top-Box-COMPONENT">
+    <input type="text" class="UserInput" @bind="UInput">
+</div>
+<div class="Bot-Box-COMPONENT">
+    <input type="text" class="Output" @bind="Display">
+</div>
+
+
+
+@code{
+
+     // varibles
+    string userInput = "";
+    string output = "";
+    string OriginInput = "";
+
+    // getters and setters
+    public string UInput
+    {
+        get => userInput;
+        set
+        {
+            OriginInput  = userInput;
+            userInput = BinaryToString(value);
+            output = userInput;
+            userInput = OriginInput;
+        }
+    }
+
+    public string Display{
+        get => output;
+        set
+        {
+            output = userInput;
+        }
+    }
+    // binary to string function
+    public string BinaryToString(string userInput)
+    {
+        StringBuilder StringBuild = new StringBuilder();
+            foreach (char C in userInput.ToCharArray())
+            {
+                StringBuild.Append(Convert.ToString(C, 2));
+            }
+            string display = StringBuild.ToString();
+            return display;
+    }
+}

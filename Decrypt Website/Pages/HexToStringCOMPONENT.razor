@@ -1,0 +1,60 @@
+@page "/HexToStringCOMPONENT"
+
+<h3>HEX TO STRING</h3>
+
+<div class="Top-Box-COMPONENT">
+    <input type="text" class="UserInput" @bind="UInput">
+</div>
+<div class="Bot-Box-COMPONENT">
+    <input type="text" class="Output" @bind="Display">
+</div>
+
+
+
+@code{
+    // https://www.geeksforgeeks.org/convert-hexadecimal-value-string-ascii-value-string/
+    string userInput = "";
+    string output = "";
+    string OriginInput = "";
+
+    public string UInput
+    {
+        get => userInput;
+        set
+        {
+            OriginInput  = userInput;
+            userInput = HexToString(value);
+            output = userInput;
+            userInput = OriginInput;
+        }
+    }
+
+    public string Display{
+        get => output;
+        set
+        {
+            output = userInput;
+        }
+    }
+
+    public static String HexToString(string userInput)
+    {
+        // initialize the ASCII code string as empty.
+        String ascii = "";
+ 
+        for (int i = 0; i < userInput.Length; i += 2)
+        {
+ 
+            // extract two characters from hex string
+            String part = userInput.Substring(i, 2);
+ 
+            // change it into base 16 and
+            // typecast as the character
+            char ch = (char)Convert.ToInt32(part, 16);;
+ 
+            // add this char to final ASCII string
+            ascii = ascii + ch;
+        }
+        return ascii;
+    }
+}

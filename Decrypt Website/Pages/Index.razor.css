@@ -1,0 +1,105 @@
+/* INDEX PAGE */
+/* font standerdisation */
+* {
+    font-family: "Rubik", sans-serif;
+    font-weight: 400;
+}
+
+/* FOR THE TOP TEXT */
+/* colour vairibles */
+:root {
+    --purple: rgb(123, 31, 162);
+    --violet: rgb(103, 58, 183);
+    --pink: rgb(244, 143, 177);
+}
+/* animation for the gradient */
+@keyframes background-pan {
+    from {
+        background-position: 0% center;
+    }
+
+    to {
+        background-position: -200% center;
+    }
+}
+
+@keyframes scale {
+    from, to {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+}
+/* text styling */
+h1 {
+    font-size: 50px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+    h1 .magic-text {
+        animation: background-pan 3s linear infinite;
+        background: linear-gradient( to right, var(--purple), var(--violet), var(--pink), var(--purple) );
+        background-size: 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        white-space: nowrap;
+    }
+/* BOXES */
+.Container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 200px;
+}
+
+.Box-2 {
+    background-color: #b3caec;
+    width: 200px;
+    height: 200px;
+    margin: 100px;
+    /* For Movement Effect*/
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+/* Making the boxes and inizalising movement*/
+.Box-1, .Box-3 {
+    background-color: #be9ee9;
+    width: 200px;
+    height: 200px;
+    margin: 100px;
+    /* For Movement Effect*/
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+    /*Boxes that move down on sides */
+    .Box-1:hover, .Box-3:hover {
+        -webkit-transform: translateY(50px);
+        transform: translateY(50px);
+    }
+
+/*Box hat moves up*/
+.Box-2:hover {
+    -webkit-transform: translateY(-70px);
+    transform: translateY(-70px);
+}
+
+/* Only Middle text */
+.Middle-Text {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    padding-top: 100px;
+}

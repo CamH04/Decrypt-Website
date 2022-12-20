@@ -1,0 +1,40 @@
+@page "/Base64ToStringCOMPONENT"
+
+
+<h3>BASE64 TO STRING</h3>
+<input type="text" id="UserInput" @bind="UInput">
+<input type="text" id="Output" @bind="Display">
+
+@code{
+
+    string userInput = "";
+    string output = "";
+    string OriginInput = "";
+
+    public string UInput
+    {
+        get => userInput;
+        set
+        {
+            OriginInput  = userInput;
+            userInput = Base64ToString(value);
+            output = userInput;
+            userInput = OriginInput;
+        }
+    }
+
+    public string Display{
+        get => output;
+        set
+        {
+            output = userInput;
+        }
+    }
+
+    public static string Base64ToString(string userInput)
+    {
+        var Bytes = System.Convert.FromBase64String(userInput);
+        string TranslatedString = System.Text.Encoding.UTF8.GetString(Bytes);
+        return TranslatedString;
+    }
+}

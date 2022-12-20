@@ -1,0 +1,49 @@
+﻿@page "/BinaryToStringCOMPONENT"
+
+<h3>BINARY TO STRING</h3>
+
+
+<input type="text" id="UserInput" @bind="UInput">
+
+<input type="text" id="Output" @bind="Display">
+
+@code{
+    // declaring all varibles 
+    string userInput = "";
+    string output = "";
+    string OriginInput = "";
+
+    //geters and setters for the varibles
+    public string UInput
+    {
+        get => userInput;
+        set
+        {
+            OriginInput  = userInput;
+            // value of userInput is the entered value in the input box through the below function
+            userInput = BinaryToString(value);
+            output = userInput;
+            userInput = OriginInput;
+        }
+    }
+
+    public string Display{
+        get => output;
+        set
+        {
+            output = userInput;
+        }
+    }
+
+    //Binary To String translator function
+    public string BinaryToString(string userInput)
+    {
+        List<Byte> byteList = new List<Byte>();
+
+        for (int i = 0; i < userInput.Length; i += 8)
+        {
+            byteList.Add(Convert.ToByte(userInput.Substring(i, 8), 2));
+        }
+        return Encoding.ASCII.GetString(byteList.ToArray());
+    }
+}

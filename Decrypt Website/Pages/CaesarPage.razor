@@ -1,0 +1,74 @@
+﻿@page "/caesar"
+
+<h1>Caesar</h1>
+<div class="center">
+    <div>
+        <p>Shift Key</p>
+        <input type="number" class="UserInput" @bind="Key">
+    </div>
+    <div class="Top-Box-COMPONENT">
+    <input type="text" class="UserInput" @bind="UInput">
+    </div>
+    <div class="Bot-Box-COMPONENT">
+        <input type="text" class="Output" @bind="Display">
+    </div>
+</div>
+
+
+
+@code{
+    string userInput = "";
+    string output = "";
+    string OriginInput = "";
+    int shift = 1;
+    int KeyOrigin = 1;
+
+    public int Key
+    {
+        get => shift;
+        set
+        {
+            shift = value;
+        }
+    }
+
+    public string UInput
+    {
+        get => userInput;
+        set
+        {
+            OriginInput  = userInput;
+            userInput = Encrypt(value, shift);
+            output = userInput;
+            userInput = OriginInput;
+        }
+    }
+
+    public string Display{
+        get => output;
+        set
+        {
+            output = userInput;
+        }
+    }
+
+    public static char CipherRules(char userInput, int shift)
+    {
+        if (!char.IsLetter(userInput))
+            return userInput;
+
+        char offset = char.IsUpper(userInput) ? 'A' : 'a';
+        return (char)((((userInput + shift) - offset) % 26) + offset);
+    }
+
+	public static string Encrypt(string userInput, int shift)
+    {
+        string output = string.Empty;
+
+        foreach (char ch in userInput)
+            output += CipherRules(ch, shift);
+        return output;
+    }
+
+    
+}
