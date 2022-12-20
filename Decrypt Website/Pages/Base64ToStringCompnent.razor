@@ -6,11 +6,12 @@
 <input type="text" id="Output" @bind="Display">
 
 @code{
-
+    //varibles
     string userInput = "";
     string output = "";
     string OriginInput = "";
 
+    // getters and setters
     public string UInput
     {
         get => userInput;
@@ -30,7 +31,7 @@
             output = userInput;
         }
     }
-
+    //translating Base64 -> string
     public static string Base64ToString(string userInput)
     {
         var Bytes = System.Convert.FromBase64String(userInput);

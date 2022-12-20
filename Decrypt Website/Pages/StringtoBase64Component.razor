@@ -1,8 +1,6 @@
 @page "/StringtoBase64Component"
 
-
 <h3>STRING TO BASE 64</h3>
-
 <div class="Top-Box-COMPONENT">
     <input type="text" class="UserInput" @bind="UInput">
 </div>
@@ -11,11 +9,11 @@
 </div>
 
 @code{
-
+    //varibles
     string userInput = "";
     string output = "";
     string OriginInput = "";
-
+    // getters and setters
     public string UInput
     {
         get => userInput;
@@ -27,7 +25,6 @@
             userInput = OriginInput;
         }
     }
-
     public string Display{
         get => output;
         set
@@ -35,7 +32,7 @@
             output = userInput;
         }
     }
-
+    // String to base 64 translator
     public static string StringToBase64(string userInput)
     {
         byte[] bytes = System.Text.ASCIIEncoding.ASCII.GetBytes(userInput);
