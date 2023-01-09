@@ -238,6 +238,7 @@ h1 {
         animation: background-pan 3s linear infinite;
         background: linear-gradient( to right, var(--purple), var(--violet), var(--pink), var(--purple) );
         background-size: 200%;
+        /* background-clip: text; */
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         white-space: nowrap;
@@ -324,3 +325,13 @@ input{
     width: 25vw;
     height: 25vh;
 }
+/*Shift Page Css*/
+.C-Box{
+    padding: 10px;
+}
+
+/* CC page Css*/
+.BoxLine{
+    display: inline-flex;
+    justify-content: space-evenly;
+} 
